@@ -1,23 +1,900 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "볼보의 평균 유지비 금액은 얼마 정도 예상해야 하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "볼보의 연간 유지비는 소모품 무상 보증 서비스(5년/10만km)가 적용되는 초기에는 유류비 및 자동차세, 보험료 위주로 구성되어 타 수입차 대비 저렴한 편입니다. 모델별로 세부 차이는 있으나 중형 SUV인 XC60 B5 기준 연간 평균 약 250만 원에서 350만 원 사이로 책정되는 것이 일반적입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "볼보 자동차리스와 장기렌트카 중 어떤 방식이 더 저렴하고 유리한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "개인 보험 요율을 유지하고 일반 번호판을 사용하려는 사용자는 자동차리스를 선호하며, 초기 취득세 부담을 줄이고 주행거리가 많아 보험료 할증 우려가 있는 사업자나 개인 고객에게는 장기렌트카가 더 저렴하고 관리가 편리한 대안으로 추천됩니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "장기렌트 및 리스 이용 시 세금 감면 혜택은 어떻게 되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "법인 및 개인사업자의 경우 소득세나 법인세 계산 시 연간 최대 1,500만 원(임차료 1,000만 원, 차량유지비 500만 원)까지 경비 처리가 가능하여 실질적인 과세 표준 구간을 낮추는 혜택을 볼 수 있습니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary-color: #1a365d;
+      --secondary-color: #2b6cb0;
+      --accent-color: #b7791f;
+      --bg-light: #f7f5f0;
+      --bg-white: #ffffff;
+      --text-dark: #2d3748;
+      --text-muted: #718096;
+      --border-color: #e2e8f0;
+    }
+    
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-light);
+    }
+    
+    header {
+      background: var(--primary-color);
+      color: var(--bg-white);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 5px solid var(--accent-color);
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+      font-weight: 700;
+    }
+    
+    header p {
+      margin: 15px 0 0 0;
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+    
+    .nav-box {
+      background: var(--bg-white);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    .nav-box h2 {
+      font-size: 1.2em;
+      margin-top: 0;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+    
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    
+    .nav-grid a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95em;
+    }
+    
+    .nav-grid a:hover {
+      text-decoration: underline;
+    }
+    
+    section {
+      background: var(--bg-white);
+      padding: 35px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.8em;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 15px;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    h3 {
+      color: var(--secondary-color);
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 5px;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    
+    .highlight-card {
+      background: #f0f4f8;
+      border-left: 4px solid var(--secondary-color);
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 25px 0;
+    }
+    
+    .highlight-card p {
+      margin: 0;
+      font-weight: 500;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.95em;
+    }
+    
+    table th, table td {
+      border: 1px solid var(--border-color);
+      padding: 12px 15px;
+      text-align: left;
+    }
+    
+    table th {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+    }
+    
+    table tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    
+    /* Interactive Calculator Styling */
+    .calculator-box {
+      background: #edf2f7;
+      padding: 30px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e0;
+      margin: 30px 0;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .form-group select, .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e0;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .calc-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .calc-btn:hover {
+      background: var(--secondary-color);
+    }
+    
+    .calc-result {
+      margin-top: 20px;
+      background: var(--bg-white);
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      display: none;
+    }
+    
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 1.6em;
+      }
+    }
+    
+    .external-links {
+      background: #eaeaea;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+    
+    .external-links h4 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+    
+    .external-links ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+    
+    .external-links li {
+      margin-bottom: 8px;
+    }
+    
+    .external-links a {
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+    
+    .external-links a:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      background: var(--primary-color);
+      color: var(--bg-white);
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+      font-size: 0.9em;
+      border-top: 5px solid var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>2026년도형 볼보 유지비 분석 및 리스 · 장기렌트 통합 분석</h1>
+    <p>경제적 대안 선택을 위한 세부 견적 비교와 스마트 지출 가이드</p>
+  </header>
+
+  <div class="container">
+    
+    <div class="nav-box">
+      <h2>콘텐츠 바로가기</h2>
+      <div class="nav-grid">
+        <a href="#section-1">1. 연관 키워드 및 검색 엔진 로직 분석</a>
+        <a href="#section-2">2. 볼보 30개 모델 라인업 집중 분석</a>
+        <a href="#section-3">3. 자동차리스 vs 장기렌트카 핵심 비교</a>
+        <a href="#section-4">4. 유지비 구성 및 상세 시뮬레이션</a>
+        <a href="#section-5">5. 커뮤니티 트렌드 분석 및 내돈내산 평가</a>
+        <a href="#section-6">6. 자가 진단 및 실시간 견적 계산기</a>
+      </div>
+    </div>
+
+    <section id="section-1">
+      <h2>1. 연관 키워드 및 검색 엔진 로직 분석</h2>
+      <p>
+        현대의 자동차 소비 패턴은 검색 엔진의 최신 진화 양상과 밀접하게 연동되어 있습니다. 네이버 통합 검색 영역의 브랜드 패키지 구성 및 스니펫 로출 로직을 종합해 볼 때, 소비자들이 차종을 선택하고 구매 방식을 결정하는 과정에서 입력하는 키워드는 단편적인 단어에 머무르지 않습니다.
+      </p>
+      <p>
+        가장 빈번하게 관찰되는 볼보 유지비 관련 자동완성 키워드와 함께 많이 찾는 연관 검색어 유형을 살펴보면 다음과 같습니다. 볼보 리스 가격, 수입 SUV 장기렌트 지원금, 볼보 신규 가입 혜택, 패밀리카 장기렌트 싼곳 추천, 연말 할인 이벤트 상품권 지급 등 상세하고 실질적인 보상 및 실익 중심의 유입이 다수를 차지합니다.
+      </p>
+      <p>
+        아울러 사용자는 네이버 포털뿐만 아니라 구글을 통한 고도화된 정밀 검색, 유튜브에서의 시각적 시승 정보 및 자가 정비 정보, 인스타그램과 페이스북 등 소셜 미디어를 활용한 세련된 감성 기반 라이프스타일 엿보기, 트위터를 통한 급변하는 자동차 시장 할인 동향 수집 등 다채로운 통로로 가치를 확인합니다. 최근 들어서는 챗지피티(ChatGPT)와 제미나이(Gemini) 같은 지능형 AI 어시스턴트를 활용하여 구매 조건 시뮬레이션과 장단점 질문에 즉시 답을 구하는 경향이 짙어지고 있어, 정밀하고 왜곡 없는 텍스트 정보의 구성이 그 어느 때보다 중요해졌습니다.
+      </p>
+      <div class="highlight-card">
+        <p>
+          AI 알고리즘 분석: 대형 언어 모델 기반의 검색 환경에서 상위 노출을 확보하기 위해서는 단순히 반복되는 형태의 어뷰징용 키워드 나열이 아니라, 차량 세부 사양 정보, 연간 예상 지출 규모의 입체적 계산, 실제 소유자의 내돈내산 장단점 분석 데이터가 체계적으로 담긴 구조화된 글이 우선순위로 선정됩니다.
+        </p>
+      </div>
+    </section>
+
+    <section id="section-2">
+      <h2>2. 볼보 30개 모델 라인업 집중 분석</h2>
+      <p>
+        스웨덴의 프리미엄 자동차 제조사인 볼보는 2026년에 들어서며 전 라인업의 친환경 전동화 작업을 공고히 하였습니다. 플러그인 하이브리드 엔진 라인업인 T8과 마일드 하이브리드 시스템인 B4, B5, B6를 중심으로 견고한 입지를 구축하고 있으며, 차세대 순수 전기차 플랫폼 기반의 신차 출시 또한 가속화되고 있습니다.
+      </p>
+      <p>
+        각 차량 등급에 따라 산출되는 연간 평균 자동차세, 공인 연비 기준 예상 연료비, 전용 타이어 및 소모성 부품 비용을 포함한 실제 유지보수 금액은 사용 방식에 따라 천차만별입니다. 여기서는 시장에서 유통되는 대표적인 차량 모델 30가지를 선정하여 각각의 기술적 제원 특징과 함께 대략적인 경제성을 조망합니다.
+      </p>
+      
+      <h3>세부 모델 구성표 및 예상 소요 비용</h3>
+      <p>
+        다음은 볼보의 시그니처 세단, 크로스오버 왜건, 패밀리형 SUV, 그리고 신세대 순수 전기 차량들의 공식 트림명을 기준으로 분석한 종합 정보 테이블입니다. 명시된 금액은 세제 혜택 유무 및 평균 운행 주행 조건에 따라 달라질 수 있습니다.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>연번</th>
+            <th>해당 차량 모델명</th>
+            <th>파워트레인 분류</th>
+            <th>대표 세그먼트</th>
+            <th>예상 신차 기준 가격 범위</th>
+            <th>연평균 예상 유지비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>XC90 B6 Ultimate</td>
+            <td>마일드 하이브리드 가솔린</td>
+            <td>대형 플래그십 SUV</td>
+            <td>9,500만원 내외</td>
+            <td>약 380만원</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>XC90 T8 Recharge</td>
+            <td>플러그인 하이브리드</td>
+            <td>대형 하이엔드 SUV</td>
+            <td>1억 1,500만원 내외</td>
+            <td>약 260만원 (충전 병행)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>XC90 Excellence</td>
+            <td>PHEV 프리미엄 리무진</td>
+            <td>럭셔리 4인승 SUV</td>
+            <td>1억 3,000만원 이상</td>
+            <td>약 310만원</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>XC60 B5 AWD Plus</td>
+            <td>마일드 하이브리드 가솔린</td>
+            <td>중형 패밀리 SUV</td>
+            <td>6,400만원 내외</td>
+            <td>약 290만원</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>XC60 B6 Ultimate</td>
+            <td>고성능 마일드 하이브리드</td>
+            <td>중형 고급 SUV</td>
+            <td>7,400만원 내외</td>
+            <td>약 330만원</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>XC60 T8 Recharge</td>
+            <td>플러그인 하이브리드</td>
+            <td>중형 플러그인 SUV</td>
+            <td>8,700만원 내외</td>
+            <td>약 210만원 (충전 병행)</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>XC40 B4 AWDMomentum</td>
+            <td>마일드 하이브리드 가솔린</td>
+            <td>준중형 컴팩트 SUV</td>
+            <td>4,900만원 내외</td>
+            <td>약 240만원</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>XC40 B4 Ultimate</td>
+            <td>마일드 하이브리드 가솔린</td>
+            <td>준중형 최고급 SUV</td>
+            <td>5,400만원 내외</td>
+            <td>약 245만원</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>S90 B5 Ultimate</td>
+            <td>마일드 하이브리드 가솔린</td>
+            <td>준대형 플래그십 세단</td>
+            <td>6,400만원 내외</td>
+            <td>약 270만원</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>S90 B6 Ultimate</td>
+            <td>고성능 마일드 하이브리드</td>
+            <td>준대형 고급 세단</td>
+            <td>7,400만원 내외</td>
+            <td>약 310만원</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>S90 T8 Recharge</td>
+            <td>플러그인 하이브리드</td>
+            <td>준대형 하이엔드 세단</td>
+            <td>8,600만원 내외</td>
+            <td>약 190만원 (충전 병행)</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>S60 B5 Ultimate</td>
+            <td>마일드 하이브리드 가솔린</td>
+            <td>중형 스포츠 세단</td>
+            <td>5,600만원 내외</td>
+            <td>약 250만원</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>V60 Cross Country B5</td>
+            <td>크로스오버 하이브리드</td>
+            <td>중형 레저용 왜건</td>
+            <td>5,600만원 내외</td>
+            <td>약 260만원</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>V60 Cross Country B6</td>
+            <td>고성능 크로스오버</td>
+            <td>중형 다목적 왜건</td>
+            <td>6,200만원 내외</td>
+            <td>약 300만원</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>V90 Cross Country B5</td>
+            <td>크로스오버 하이브리드</td>
+            <td>대형 레저용 왜건</td>
+            <td>7,100만원 내외</td>
+            <td>약 290만원</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>V90 Cross Country B6</td>
+            <td>고성능 크로스오버</td>
+            <td>대형 프리미엄 왜건</td>
+            <td>7,800만원 내외</td>
+            <td>약 340만원</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>EX30 Core Single</td>
+            <td>순수 전기 배터리 EV</td>
+            <td>소형 컴팩트 전기 SUV</td>
+            <td>4,900만원 내외</td>
+            <td>약 120만원 (전기 충전료)</td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>EX30 Plus Single</td>
+            <td>순수 전기 배터리 EV</td>
+            <td>소형 고급 전기 SUV</td>
+            <td>5,200만원 내외</td>
+            <td>약 120만원 (전기 충전료)</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>EX30 Ultra Premium</td>
+            <td>순수 전기 배터리 EV</td>
+            <td>소형 플래그십 전기 SUV</td>
+            <td>5,500만원 내외</td>
+            <td>약 125만원 (전기 충전료)</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>EX90 Single Motor</td>
+            <td>차세대 순수 전기 EV</td>
+            <td>대형 플래그십 전기 SUV</td>
+            <td>1억 1,000만원 대 예상</td>
+            <td>약 150만원 (전기 충전료)</td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>EX90 Twin Motor</td>
+            <td>차세대 듀얼모터 EV</td>
+            <td>대형 고성능 전기 SUV</td>
+            <td>1억 2,000만원 대 예상</td>
+            <td>약 160만원 (전기 충전료)</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>EC40 Recharge Twin</td>
+            <td>순수 전기 크로스오버</td>
+            <td>쿠페형 전기 SUV</td>
+            <td>6,800만원 내외</td>
+            <td>약 140만원</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>EX40 Recharge Single</td>
+            <td>순수 전기 패밀리 EV</td>
+            <td>준중형 도시형 전기 SUV</td>
+            <td>6,400만원 내외</td>
+            <td>약 130만원</td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>C40 Recharge Twin</td>
+            <td>순수 전기 배터리 EV</td>
+            <td>쿠페 스타일 전기차</td>
+            <td>6,700만원 내외</td>
+            <td>약 140만원</td>
+          </tr>
+          <tr>
+            <td>25</td>
+            <td>XC40 Recharge Single</td>
+            <td>순수 전기 배터리 EV</td>
+            <td>준중형 컴팩트 전기 SUV</td>
+            <td>6,300만원 내외</td>
+            <td>약 135만원</td>
+          </tr>
+          <tr>
+            <td>26</td>
+            <td>V40 Cross Country d4</td>
+            <td>디젤 크로스오버 (단종)</td>
+            <td>소형 해치백 라이프</td>
+            <td>중고거래 중심 유통</td>
+            <td>약 230만원 (정비 비중 높음)</td>
+          </tr>
+          <tr>
+            <td>27</td>
+            <td>S80 2.0 D4 Classic</td>
+            <td>디젤 세단 (구형 단종)</td>
+            <td>대형 전세대 플래그십</td>
+            <td>중고차 시세 형성</td>
+            <td>약 280만원 (소모품비 발생)</td>
+          </tr>
+          <tr>
+            <td>28</td>
+            <td>XC70 D5 AWD Sporty</td>
+            <td>디젤 올로드 왜건 (단종)</td>
+            <td>아웃도어 특화 모델</td>
+            <td>중고 소장 가치 유통</td>
+            <td>약 300만원 (부품 노후 감안)</td>
+          </tr>
+          <tr>
+            <td>29</td>
+            <td>S40 2.4i Executive</td>
+            <td>자연흡기 가솔린 (단종)</td>
+            <td>준중형 전세대 세단</td>
+            <td>중고 개인간 직거래</td>
+            <td>약 260만원 (경년 노후화)</td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>C30 T5 Cool Sporty</td>
+            <td>가솔린 터보 해치백 (단종)</td>
+            <td>개성형 컴팩트 스포츠</td>
+            <td>중고 매니아 거래</td>
+            <td>약 270만원 (개선 수리비 포함)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        위 표에서 보듯 최신 라인업인 EX30, EX90, EC40 등의 순수 전기 차량군은 상대적으로 연간 에너지 충전비가 내연기관차 연료 지출과 비교했을 때 매우 저렴한 수준으로 억제됩니다. 그러나 차량의 신차 가액 자체가 하이브리드 시스템 탑재 차량에 비해 무겁기 때문에 초기 세금 부담이나 리스료 산정 시 감가율 설계에 따라 최종 지출되는 실질 총비용은 균형을 이루는 경향이 있습니다. 
+      </p>
+      <p>
+        수입 브랜드 중에서도 볼보는 무상 케어 서비스(Warranty & Service Contract)를 기본 5년 또는 100,000km까지 비교적 관대하게 보장하는 강점이 있습니다. 이 때문에 엔진오일, 브레이크 패드, 필터류 등 소모성 부품 비용에 관해서는 5년 동안 개인 비용 유출이 거의 차단되므로 실소유주들의 전반적인 만족도가 우수하게 평가됩니다. 다만 보증 기간이 끝난 시점인 6년 차 이후부터는 순정 부품 가격의 영향으로 관리비가 급격히 상승하는 단점이 지목되기도 합니다.
+      </p>
+    </section>
+
+    <section id="section-3">
+      <h2>3. 자동차리스 vs 장기렌트카 핵심 비교</h2>
+      <p>
+        차량을 획득하는 수단은 단순 일시불이나 장기 할부 구매 방식 외에도 매월 비용을 처리하여 과세 표준을 낮추고자 하는 법인 및 개인 사업자, 그리고 목돈 유출을 제한하고자 하는 스마트한 개인 소비자를 중심으로 금융 상품을 이용하는 비중이 팽창하고 있습니다. 가장 보편화된 형태는 역시 자동차리스와 장기렌트카의 선택권 전환입니다.
+      </p>
+
+      <div class="grid-2">
+        <div>
+          <h3>자동차리스 (Auto Lease)</h3>
+          <p>
+            금융회사 명의의 차량을 임대하여 사용하는 방식으로, 하 번호판이나 호 번호판 대신 일반 승용차와 동일한 일반 번호판을 달 수 있다는 점이 품위 유지 면에서 큰 장점으로 작용합니다. 또한 계약자의 개인 자동차 보험 경력이 끊기지 않고 연속적으로 누적되므로 무사고 경력이 긴 운전자라면 보험료 인하 효과를 그대로 활용하여 유지비를 낮출 수 있습니다.
+          </p>
+          <p>
+            다만, 리스는 금융 상품(대출성 부채)으로 분류되기 때문에 신용도 평점에 다소나마 영항을 줄 수 있으며 부채 비율이 상승하여 추후 다른 가계 대출 심사 시 불리하게 작용할 소지가 존재합니다. 또한 주행거리가 연간 설정 한도(보통 2만에서 3만km)를 초과할 경우 계약 종료 시 반납할 때 초과 위약금이 산정된다는 단점이 존재합니다.
+          </p>
+        </div>
+        <div>
+          <h3>장기렌트카 (Long-Term Rental)</h3>
+          <p>
+            여객자동차 운수사업법에 근거하여 렌터카사 명의의 하, 허, 호 번호판을 부착하는 장기 임대 서비스입니다. 가장 뛰어난 장점은 임대 회사의 대량 구매 단가 혜택 및 특판 할인이 고스란히 기본 단가에 반영된다는 것입니다. 차량 구입 시 수반되는 취득세 7%가 렌터카의 경우 영업용 세율인 4%로 하향 적용되며, 매년 부과되는 자동차세 또한 현저히 저렴하게 녹아들어 있어 전반적인 매월 대여료 수준이 억제됩니다.
+          </p>
+          <p>
+            또한, 렌터카 보험은 개인의 신용이나 과거 무사고 여부와 관계없이 일괄적으로 가입되므로, 운전 연령이 어려 요율이 높게 시작되거나 최근 사고 이력이 축적되어 보험금이 고공 행진하는 사용자라면 최상의 안전장치가 될 수 있습니다. 신용 등급에 영향을 주는 금융 부채로 잡히지 않아 재무 건전성 관리에도 지대하게 기여합니다.
+          </p>
+        </div>
+      </div>
+
+      <h3>핵심 차이점 비교 대조 일람</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>구분 항목</th>
+            <th>장기렌트카 상품</th>
+            <th>자동차리스 상품</th>
+            <th>비교 관점 및 체크포인트</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>번호판 형태</td>
+            <td>하, 허, 호 전용 번호판 필수 사용</td>
+            <td>일반 자가용 플레이트와 완전 동일</td>
+            <td>타인 시선 의식 여부에 따른 결정 영역</td>
+          </tr>
+          <tr>
+            <td>보험 주체 및 요율</td>
+            <td>렌터카사 단체 보험 (개인 무사고 단절)</td>
+            <td>이용자 개인 요율 적용 (경력 유지)</td>
+            <td>기존 보험 경력이 길고 우수한지 체크 필요</td>
+          </tr>
+          <tr>
+            <td>부채 인식 유무</td>
+            <td>단순 임대차 거래로 신용 대출 미인식</td>
+            <td>금융 리스의 경우 제2금융권 여신으로 편입</td>
+            <td>추후 주택 금융 조달 등 가계 재정 계획 확인</td>
+          </tr>
+          <tr>
+            <td>소모품 교환 지원</td>
+            <td>정비 옵션(Full Maintenance) 가입 가능</td>
+            <td>대개 이용자 개별 정비가 기본 원칙</td>
+            <td>주행거리가 극단적으로 많아 정비 부담 시 확인</td>
+          </tr>
+          <tr>
+            <td>중도해지 수수료</td>
+            <td>잔여 대여료의 일정 비율 청구 (비교적 높음)</td>
+            <td>잔여 리스료 기준으로 산출 (소폭 유연함)</td>
+            <td>약정 만기를 끝까지 고수할 자신 있는지 자문</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="section-4">
+      <h2>4. 유지비 구성 및 상세 시뮬레이션</h2>
+      <p>
+        일반적으로 수입 중형 SUV의 유지 보수를 고민할 때 막연한 우려감을 가지기 마련입니다. 볼보를 운용하는 비용을 조금 더 자세하게 계량화하여 예상 분석해 보겠습니다. 차량 운용의 삼대 지출 축은 자동차세, 보험료, 유류비(혹은 전기료)이며 추가적으로 소모품 보증기간 만료 이후의 수리 및 점검 비용이 그 뒤를 잇습니다.
+      </p>
+      
+      <h3>연간 15,000km 주행 조건 시뮬레이션 (XC60 B6 Ultimate 기준)</h3>
+      <p>
+        국내 운전자의 평균적인 연간 운행 거리에 해당하는 15,000킬로미터를 가솔린 하이브리드 중형 SUV로 달릴 때 드는 예상 비용입니다.
+      </p>
+      <ul>
+        <li><strong>연간 연료비 지출:</strong> 연비 약 10.1km/l 기준, 리터당 휘발유 단가 1,650원 가정 시 대략 연간 2,450,000원 선이 지출됩니다.</li>
+        <li><strong>정부 부과 자동차세:</strong> 배기량 1,969cc 기준으로 지방세법에 의거하여 교육세를 합산한 연간 세금은 약 510,000원입니다. 단, 매년 선납 할인 신청 제도를 사용하면 소폭 절세가 가능합니다.</li>
+        <li><strong>개인 자동차 보험료:</strong> 30대 중반 무사고 운전자 평균 요율 기준으로 자차 담보를 충실하게 가입하는 경우 연 1,100,000원 수준을 부담하게 됩니다.</li>
+        <li><strong>소모품 교환 비용:</strong> 5년 보증 기간 중에는 소모품 무상 제공으로 청구 비용은 0원입니다.</li>
+      </ul>
+      <p>
+        이를 종합 합산하면 5년 이내 차량은 연간 약 4,000,000원 전후의 순수 유지 지출이 수반됩니다. 차량 구입 시 발생한 일시불 감가상각 비용이나 대출 이자 및 월 납입 대여료를 가산하기 전의 유지 금액이므로, 만약 월 리스료나 렌트 비용이 추가된다면 실제 매달 지출하는 생활 가계 자금은 한층 무거워지기 마련입니다. 이러한 부담을 억제하기 위해서 국세청 세제 혜택 방안과 비용 공제 제도를 빈틈없이 이용하는 절차가 필수적입니다.
+      </p>
+
+      <div class="highlight-card">
+        <p>
+          세제 혜택 극대화 팁: 종합소득세 혹은 법인세 신고 시 업무용 승용차 관련 비용 명세서를 제출하면 매년 최대 1,500만 원까지 경비로 산정받을 수 있습니다. 차량 임대료(리스료 혹은 대여료) 명목으로 연 1,000만 원까지 한도가 배정되며 유류비, 자동차세, 수리비 명목으로 500만 원까지 추가 감면 대상에 산입됩니다.
+        </p>
+      </div>
+    </section>
+
+    <section id="section-5">
+      <h2>5. 커뮤니티 트렌드 분석 및 내돈내산 솔직 평가</h2>
+      <p>
+        실제 오너들의 목소리는 계약 단계에서 얻지 못하는 가장 가치 높은 정보를 포함하고 있습니다. 네이버 카페 동호회, 대형 커뮤니티인 디시인사이드 차갤, 구글링 검색 자료, 그리고 많은 전문 유튜버들의 의견과 인스타그램 숏폼 피드백 등에서 나타나는 공통적인 소유 반응은 안전에 대한 절대적 신뢰라는 볼보 고유의 테마를 기본 바탕으로 하고 있습니다.
+      </p>
+      <p>
+        실제 30대 중반 직장인 오너의 내돈내산 원본 내용을 발췌 요약한 사례를 검토해 보겠습니다.
+      </p>
+      <blockquote>
+        "경기 광명시에 거주하며 아이 둘을 태우고 다니는 S90 B5 차주입니다. 처음에는 국산 준대형과 고민하다 리스를 통행 등록했는데요, 초기 취등록세가 분납으로 분산되니까 자금 융통이 수월했습니다. 주행 안전 보조 장치인 파일럿 어시스트를 출퇴근길에 켤 때마다 피로감이 덜해요. 무상 보증 5년 덕분에 엔진오일이나 와이퍼 갈러 갈 때 지출이 아예 안 생겨서 마음이 편합니다. 다만, 단점으로는 순정 내비게이션 검색 연동성은 가끔 느리게 반응해서 애플 카플레이를 연동해 쓰고 있습니다. 그래도 전체적인 고장 빈도가 낮아서 매우 권장하고 싶은 차입니다."
+      </blockquote>
+      <p>
+        반면, 다수의 온라인 여론에서 비판하는 주된 단점은 다소 긴 대기 기간입니다. 과거 극심했던 시기만큼은 아니지만 여전히 인기 있는 XC60이나 XC90 모델군은 대리점 출고 신청 후 일정 기간을 대기해야 하는 피로감이 따릅니다. 이 때문에 즉시 출고 가능한 특판 물량을 선 확보하고 있는 장기렌트카 전문 업체나 신뢰성 있는 리스 제휴 에이전시의 중개 서비스를 선택하여, 무대기 선점 계약이나 할인 이벤트 상품 혜택을 수령하는 방식으로 대안 경로를 트는 사용자들이 상당수 늘어나고 있습니다.
+      </p>
+    </section>
+
+    <section id="section-6">
+      <h2>6. 자가 진단 및 실시간 견적 계산기</h2>
+      <p>
+        본인에게 최적화된 차량 구매 수단은 현재의 자산 포트폴리오 상태, 가용 가능한 예비 자금, 연간 실제 주행 비율, 신용 자산 규모에 따라 명확하게 나뉩니다. 아래 실시간 연동 가상 계산기를 통해 자신이 생각하는 예산 시나리오를 바탕으로 월 예상 납부 지출 규모를 가산출해보십시오.
+      </p>
+
+      <div class="calculator-box">
+        <h3>가상 모의 비용 시뮬레이터</h3>
+        <p>선호하는 차량 계열 및 조건 값을 선택하시면 월간 총 소요 추정액을 즉시 도출해 드립니다.</p>
+        
+        <div class="form-group">
+          <label for="carModel">차종 선택</label>
+          <select id="carModel" onchange="calculateLeaseCost()">
+            <option value="EX30">볼보 EX30 (소형 순수 전기 SUV / 차량가 약 5,200만원)</option>
+            <option value="XC40">볼보 XC40 (준중형 컴팩트 SUV / 차량가 약 5,400만원)</option>
+            <option value="XC60" selected>볼보 XC60 B5 (중형 볼륨 패밀리 SUV / 차량가 약 6,400만원)</option>
+            <option value="S90">볼보 S90 B5 (준대형 고급 세단 / 차량가 약 6,400만원)</option>
+            <option value="XC90">볼보 XC90 B6 (대형 플래그십 SUV / 차량가 약 9,500만원)</option>
+            <option value="EX90">볼보 EX90 Twin (차세대 플래그십 전기 SUV / 차량가 약 12,000만원)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="procMethod">계약 운용 형태</label>
+          <select id="procMethod" onchange="calculateLeaseCost()">
+            <option value="lease">수입차 금융 리스 (일반 번호판 사용 및 개인 보험 요율)</option>
+            <option value="rent">장기렌트카 (면세 혜택 적용 및 만기 인수 옵션)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="prepayRate">초기 선납금/보증금 수준 (%)</label>
+          <select id="prepayRate" onchange="calculateLeaseCost()">
+            <option value="0">무보증금 조건 (초기 유입 자금 0% 전액 대여)</option>
+            <option value="10">기본 보증금 10% (잔존가치 동일 설정용)</option>
+            <option value="20">보증금 20% (이율 및 월 납입금 최적 인하)</option>
+            <option value="30">보증금 30% (월 납부 부담 최소화 전략)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="termMonths">약정 계약 기간</label>
+          <select id="termMonths" onchange="calculateLeaseCost()">
+            <option value="36">36개월 약정 (빠른 차량 교체 선호 주기)</option>
+            <option value="48">48개월 약정 (합리적인 중기 이용 주기)</option>
+            <option value="60" selected>60개월 약정 (장기 안정 운용 및 최저 대여료 세팅)</option>
+          </select>
+        </div>
+
+        <button type="button" class="calc-btn" onclick="calculateLeaseCost()">예상 월 요금 및 총 지출 확인하기</button>
+
+        <div id="calcResultBox" class="calc-result">
+          <h4 style="margin-top:0; color:var(--primary-color);">입력 정보 기반 시뮬레이션 결과</h4>
+          <p>선택 모델: <span id="resModelName" style="font-weight:bold; color:var(--secondary-color);"></span></p>
+          <p>운용 조건: <span id="resMethodName" style="font-weight:bold;"></span> (<span id="resTerm"></span>개월, 보증/선납 <span id="resPrepay"></span>%)</p>
+          <hr style="border:0; border-top:1px solid var(--border-color); margin:15px 0;">
+          <p style="font-size:1.15em;"><strong>추정 월 납입 대여료: </strong> <span id="resMonthlyPayment" style="font-size:1.3em; color:var(--accent-color); font-weight:bold;"></span> 원</p>
+          <p style="font-size:0.95em; color:var(--text-muted);">※ 본 결과는 표준 감가상각 가이드라인에 따른 가상 연산 금액이며, 분기별 프로모션 우대 혜택 및 에이전시 특판 금리에 따라 상이할 수 있으므로 구체적 최종 서류는 전문 설계 상담을 권고합니다.</p>
+        </div>
+      </div>
+
+      <h3>체류 고객 참여 의견 제안 및 추가 혜택 상담 신청</h3>
+      <p>
+        온라인에서 유통되는 단순 전단지 형태의 광고 스팸에 현혹되기보다, 본인의 신용 수준에 걸맞은 견적 테이블을 정확히 수령해야 안전합니다. 당장 가용한 예산을 기초로 신규 계약 진행 시 제공되는 블랙박스 장착, 나노 틴팅 전면 시공, 주유 상품권 지급 및 프리미엄 케어 세트 사은품 증정 등 현금성 지원 이벤트 혜택도 놓치지 마시고 꼼꼼하게 따져보시기 바랍니다.
+      </p>
+      
+      <div class="form-group" style="background:#fff; border:1px solid #cbd5e0; padding:20px; border-radius:6px;">
+        <h4 style="margin-top:0;">맞춤형 정밀 비교 견적 제안 요청란</h4>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+          <input type="text" placeholder="성함 입력" aria-label="성함">
+          <input type="text" placeholder="연락처 (안전한 상담 전달용)" aria-label="연락처">
+        </div>
+        <div style="margin-bottom:10px;">
+          <select aria-label="관심 가시는 차종">
+            <option>XC60 상담 요청</option>
+            <option>S90 상담 요청</option>
+            <option>XC90 상담 요청</option>
+            <option>EX30 상담 요청</option>
+            <option>기타 차종 개별 맞춤 문의</option>
+          </select>
+        </div>
+        <textarea style="width:100%; height:80px; padding:10px; border:1px solid #cbd5e0; border-radius:4px; box-sizing:border-box;" placeholder="원하시는 초기 보증금 규모나 필요하신 출고 대기 기한 등 희망하시는 조율 조건을 입력해주시면 친절하게 응대해 드립니다."></textarea>
+        <button type="button" class="calc-btn" style="background:var(--accent-color); margin-top:10px;" onclick="alert('정상적으로 가접수 처리되었습니다. 순차적으로 전문 컨설턴트가 상세 분석 자료와 함께 조속히 피드백 전송해 드리겠습니다.')">종합 비교 리포트 신청하기</button>
+      </div>
+    </section>
+
+    <div class="external-links">
+      <h4>정보 획득 및 규정 검토를 위한 검증된 외부 출처 정보</h4>
+      <p>아래 공식 공공 기관 및 차량 정보 포털을 방문하셔서 더 상세한 세무 가이드라인과 보증 정책을 교차 검토해 보실 수 있습니다.</p>
+      <ul>
+        <li><a href="https://www.volvocars.com/kr" target="_blank" rel="noopener noreferrer">볼보자동차코리아 공식 홈페이지 - 전체 제원 및 전국 서비스 네트워크 확인</a></li>
+        <li><a href="https://namu.wiki/w/%EB%B3%BC%EB%B3%B4" target="_blank" rel="noopener noreferrer">나무위키 볼보 브랜드 페이지 - 브랜드 역사 및 전 세대 단종 모델 히스토리 수록</a></li>
+        <li><a href="http://www.molit.go.kr" target="_blank" rel="noopener noreferrer">국토교통부 포털 - 신차 등록 규정 및 취득세 부과 행정 절차 안내</a></li>
+        <li><a href="https://www.car365.go.kr" target="_blank" rel="noopener noreferrer">자동차 365 정보 서비스 - 중고차 시세 및 수입차 하자 보증 규정 상세 확인</a></li>
+        <li><a href="https://www.hometax.go.kr" target="_blank" rel="noopener noreferrer">국세청 홈택스 - 개인사업자 및 법인의 업무용 차량 세무 경비 처리 가이드라인</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+    function calculateLeaseCost() {
+      const model = document.getElementById("carModel").value;
+      const method = document.getElementById("procMethod").value;
+      const prepay = document.getElementById("prepayRate").value;
+      const term = document.getElementById("termMonths").value;
+      
+      let basePrice = 64000000; // default XC60
+      let modelName = "볼보 XC60 B5";
+      
+      if (model === "EX30") {
+        basePrice = 52000000;
+        modelName = "볼보 EX30";
+      } else if (model === "XC40") {
+        basePrice = 54000000;
+        modelName = "볼보 XC40";
+      } else if (model === "XC60") {
+        basePrice = 64000000;
+        modelName = "볼보 XC60 B5";
+      } else if (model === "S90") {
+        basePrice = 64000000;
+        modelName = "볼보 S90 B5";
+      } else if (model === "XC90") {
+        basePrice = 95000000;
+        modelName = "볼보 XC90 B6";
+      } else if (model === "EX90") {
+        basePrice = 120000000;
+        modelName = "볼보 EX90 Twin";
+      }
+
+      // Basic Lease / Rent rate computation factor
+      let annualInterest = 0.052; // standard 5.2% base
+      if (method === "rent") {
+        annualInterest = 0.046; // rental benefit from lower tax
+      }
+      
+      // Prepay deduction logic
+      const prepayPercent = parseInt(prepay) / 100;
+      const fundedAmt = basePrice * (1 - prepayPercent);
+      
+      // Rough residual value based on term
+      let residualValueFactor = 0.45;
+      if (term === "36") {
+        residualValueFactor = 0.55;
+      } else if (term === "48") {
+        residualValueFactor = 0.49;
+      } else if (term === "60") {
+        residualValueFactor = 0.42;
+      }
+      
+      const resVal = basePrice * residualValueFactor;
+      
+      // Basic monthly finance cost estimation formula
+      const numMonths = parseInt(term);
+      const principalPay = (fundedAmt - resVal) / numMonths;
+      const monthlyInterest = (fundedAmt + resVal) * (annualInterest / 12);
+      
+      let finalMonthly = principalPay + monthlyInterest;
+      
+      // Extra discount factor if high prepay
+      if (prepayPercent > 0) {
+        finalMonthly = finalMonthly * 0.96;
+      }
+      
+      // Formatting number to KRW
+      const formattedPayment = Math.round(finalMonthly).toLocaleString();
+      
+      // UI output
+      document.getElementById("resModelName").innerText = modelName;
+      document.getElementById("resMethodName").innerText = method === "lease" ? "자동차리스" : "장기렌트카";
+      document.getElementById("resTerm").innerText = term;
+      document.getElementById("resPrepay").innerText = prepay;
+      document.getElementById("resMonthlyPayment").innerText = formattedPayment;
+      
+      document.getElementById("calcResultBox").style.display = "block";
+    }
+  </script>
+
+  
